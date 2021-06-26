@@ -140,5 +140,8 @@ def fetch(userID):
 
 
 def index(request):
-    [arr, [pos, neg]] = fetch('elonmusk') # your name 
+    name = 'elonmusk'
+    if request.method == "POST":
+        name =request.POST.get('twitter_profile')
+    [arr, [pos, neg]] = fetch(name) # your name 
     return render(request,'tweets/index.html',{'arr':arr,'pos':pos,'neg':neg,'total':pos+neg})
